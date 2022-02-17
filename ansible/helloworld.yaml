@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  tasks:
+    - name: say something
+      shell: >-
+        cat <<EOF
+          Hello, maedafoca, World!
+        EOF
+      register: hello
+
+    - name: create temporary hello world file!
+      shell: "echo {{ hello.stdout }} >> /tmp/hello_world"
