@@ -1,3 +1,3 @@
 # Scratch
 
-Scratch challengers on Operational tasks and Programming concepts.
+Challenges on Operational tasks and programming concepts.
