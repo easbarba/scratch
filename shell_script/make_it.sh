@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
-# Description: mkdirs and [file]
-# Shells supported: GNU Bash
-# Inspiration: https://github.com/tanrax/terminal-AdvancedNewFile
-
 # DEBUG OPTIONS
 set -euo pipefail
+
+# Description: make folders pointed by command followed by file
+# Example: make_it.sh foo/bar/meh.sh bar/foo/file.py
+# Shells supported: GNU Bash
+# Inspiration: https://github.com/tanrax/terminal-AdvancedNewFile
 
 # * ARGUMENTS
 
