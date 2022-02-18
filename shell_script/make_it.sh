@@ -8,64 +8,54 @@ set -euo pipefail
 # Shells supported: GNU Bash
 # Inspiration: https://github.com/tanrax/terminal-AdvancedNewFile
 
-# * ARGUMENTS
-
-arguments=("$@")
-path="${arguments[0]}"
-verbose="${arguments[1]}"
+# * VARS
+ARGUMENTS=("$@")
+PATH="${ARGUMENTS[0]}"
+[[ "$#" -gt 1 ]] && VERBOSE="${ARGUMENTS[1]}"
 
 # * FUNCTIONS
-get_last_char()
-{
-    echo "${path: -1}"
+get_last_char() {
+    echo "${PATH: -1}"
 }
 
-last_char_is_dir()
-{
+last_char_is_dir() {
     [[ $(get_last_char) == "/" ]]
 }
 
-get_filename()
-{
-    echo ${path##*/}
+get_filename() {
+    echo "${PATH##*/}"
 }
 
-get_dir_path()
-{
+get_dir_path() {
     local result
+    result=$(last_char_is_dir && echo "$PATH" || echo ${PATH%$(get_filename)})
 
-    result=$(last_char_is_dir && echo "$path" || echo ${path%$(get_filename)})
-
-    echo $result
+    echo "$result"
 }
 
-create-dirs()
-{
-    mkdir -p $(get_dir_path)
+create-dirs() {
+    mkdir -p "$(get_dir_path)"
 }
 
-create-file()
-{
-    echo '' > "$path"
+create-file() {
+    echo '' >"$PATH"
 }
 
-run_verbose()
-{
-    if [[ "$verbose" == "--verbose" ]]; then
-	echo "Path  --> $path"
-	echo "Directory --> $(get_dir_path)"
-	echo "Filename  --> $(get_filename)"
+run_verbose() {
+    if [[ "$VERBOSE" == "--verbose" ]]; then
+        echo <<EOF
+Path      --> $PATH
+Directory --> $(get_dir_path)
+Filename  --> $(get_filename)
+EOF
     fi
 }
 
-run()
-{
+run() {
     run_verbose
-
     create-dirs
     create-file
 }
 
-# * RUN
-
+# * MAIN
 run
