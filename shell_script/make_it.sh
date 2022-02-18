@@ -18,7 +18,7 @@ get_last_char() {
     echo "${PATH: -1}"
 }
 
-last_char_is_dir() {
+is_dir() {
     [[ $(get_last_char) == "/" ]]
 }
 
@@ -28,16 +28,16 @@ get_filename() {
 
 get_dir_path() {
     local result
-    result=$(last_char_is_dir && echo "$PATH" || echo ${PATH%$(get_filename)})
+    result=$(is_dir && echo "$PATH" || echo ${PATH%$(get_filename)})
 
     echo "$result"
 }
 
-create-dirs() {
+create_dirs() {
     mkdir -p "$(get_dir_path)"
 }
 
-create-file() {
+create_file() {
     echo '' >"$PATH"
 }
 
@@ -53,8 +53,8 @@ EOF
 
 run() {
     run_verbose
-    create-dirs
-    create-file
+    create_dirs
+    create_file
 }
 
 # * MAIN
