@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 
-# SOLUTION 1
+# Description: Switch cases to Pattern matching
 
-from interval import interval
+# SOLUTION 1
 
 month = 0
 year = {
-    interval(1, 3): "inicio",
-    interval(4, 6): "primeira",
-    interval(7, 9): "segunda",
-    interval(10, 12): "final",
+    range(1, 3): "inicio",
+    range(4, 6): "primeira",
+    range(7, 9): "segunda",
+    range(10, 12): "final",
 }
 
 result = {k: v for k, v in year.items() if month in k}
-result = next(iter(result.values()))
-print(result or "assetou mizeravi!")
+result = next(iter(result.values())) if result else "assetou mizeravi!"
+print(result)
